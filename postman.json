@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "9349fee5-7fb3-4b38-9d44-6c055d97377f",
+		"name": "Nodejs Streaming",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all streams",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/stream/?userId&tags",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"stream",
+						""
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": null
+						},
+						{
+							"key": "tags",
+							"value": null
+						},
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get stream by stream ID",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/stream/:streamId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"stream",
+						":streamId"
+					],
+					"variable": [
+						{
+							"key": "streamId",
+							"value": "{{streamId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload a stream",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/stream/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"stream",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\":\"Nikhil\",\n\t\"lastName\":\"CM\",\n\t\"email\":\"{{email}}\",\n\t\"password\":\"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/sign-up",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"{{email}}\",\n\t\"password\":\"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log out",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/auth/log-out",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"log-out"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload video",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "video",
+							"type": "file",
+							"src": "/Users/nikhilcm/Downloads/SampleVideo_1280x720_20mb.mp4"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/stream",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"stream"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get stream by streamId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/stream/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"stream",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5eb682cb69e7ae59ceb96a8d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View stream by streamId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/stream/:id/view",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"stream",
+						":id",
+						"view"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5eb682cb69e7ae59ceb96a8d"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
