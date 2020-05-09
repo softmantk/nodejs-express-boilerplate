@@ -3,10 +3,10 @@ const Queue = require('bull');
 const ffmpeg = require('fluent-ffmpeg');
 const pathLib = require('path');
 // const models = require("../models");
-const { redis: redisUrl } = require('../../config');
+const { redis } = require('../../config');
 
 
-const videoQueue = new Queue('video transcoding', redisUrl);
+const videoQueue = new Queue('video transcoding', { redis });
 
 const convertVideo = ({
     path, size, outPutPath,

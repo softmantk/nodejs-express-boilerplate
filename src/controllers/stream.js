@@ -1,9 +1,9 @@
 const fs = require('fs');
 const pathLib = require('path');
 const Stream = require('../services/db/models/stream');
-const { videoQueue } = require('../services/jobs/convertVideo');
+const { VODQueue } = require('../services/jobs/convertToVODHLS');
 const { projectRootDirectory } = require('../config');
-
+const util = require('../util');
 exports.getStreamInfoById = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -79,15 +79,17 @@ exports.uploadStream = async (req, res, next) => {
         });
         const fullPath = pathLib.join(projectRootDirectory, stream.metaInfo.path);
         const fileDirectory = pathLib.dirname(fullPath);
+        const fileNameOnly = util.getFileNameWithoutExt(stream.metaInfo.filename);
         const jobOptions = {
             fileDirectory,
             fileName: stream.metaInfo.filename,
-            outputQualities: ['720', '480', '240'],
-            outPutDirectory: fileDirectory,
+            outPutDirectory: pathLib.join(fileDirectory, fileNameOnly),
         };
-        videoQueue.add(jobOptions);
-
-        return res.json({ stream });
+        await VODQueue.add(jobOptions);
+        return res.json({
+            stream,
+            m3u8: `http://localhost:3000/watch/${fileNameOnly}/playlist.m3u8`,
+        });
     } catch (e) {
         return next(e);
     }

@@ -2,15 +2,15 @@ version: '3.1'
 
 services:
 
-  mongo:
-    image: mongo
-    restart: always
-#    environment:
-#      MONGO_INITDB_ROOT_USERNAME: root
-    ports:
-      - 6378:6379
   redis:
     image: redis
+    restart: always
+    #    environment:
+    #      MONGO_INITDB_ROOT_USERNAME: root
+    ports:
+      - 6378:6379
+  mongo:
+    image: mongo
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root

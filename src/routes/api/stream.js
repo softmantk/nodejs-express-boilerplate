@@ -6,7 +6,7 @@ const upload = require('../../middlewares/upload');
 const singleVideo = upload.uploadHandler({
     filename: 'video',
     type: 'single',
-    ext: ['.mp4','.webm'],
+    ext: ['.mp4', '.webm', '.avi'],
     fileSize: 500 * 1024 * 1024, // upto 50mb
 });
 

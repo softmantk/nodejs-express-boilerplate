@@ -13,7 +13,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+console.log("16::path.join(__dirname, 'stream_files', 'uploads')):",path.join(__dirname,'../', 'stream_files', 'uploads'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/watch', express.static(path.join(__dirname,'../', 'stream_files', 'uploads')));
 
 app.use('/', publicRouter);
 API.init(app);

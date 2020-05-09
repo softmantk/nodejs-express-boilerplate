@@ -23,6 +23,8 @@ module.exports = {
     },
     redis: {
         redisUrl: process.env.REDIS_URL,
+        port: process.env.REDIS_PORT,
+        host: process.env.REDIS_HOST
     },
     converter: {
         outputDirectory: process.env.VIDEO_DIRECTORY,
