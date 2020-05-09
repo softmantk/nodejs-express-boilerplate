@@ -1,0 +1,14 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "es6": true
+  },
+  "rules": {
+    "no-console": "off",
+    "indent": ["error", 4],
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "next" }],
+    "import/no-dynamic-require": "off",
+    "no-use-before-define": "off",
+    "no-param-reassign": "off"
+  }
+}
