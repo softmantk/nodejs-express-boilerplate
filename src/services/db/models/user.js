@@ -14,7 +14,7 @@ const joiUserSchema = joi.object({
     email: joi.string()
         .email()
         .required(),
-    isVerified: joi.boolean()
+    verified: joi.boolean()
         .meta({
             _mongoose: { default: false },
         }),

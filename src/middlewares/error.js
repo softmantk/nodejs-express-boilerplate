@@ -12,8 +12,6 @@ module.exports = (e, req, res, next) => {
     //             body: req.body,
     //         });
     // }
-    console.log('15:exports:e.isJoi:', e.isJoi);
-    console.log('16:exports:e.statusCode:', e);
 
     if (e.name === 'ValidationError') {
         return res.status(422)
