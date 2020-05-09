@@ -1,6 +1,5 @@
 require('dotenv-flow')
     .config();
-
 module.exports = {
     server: {
         PORT: process.env.PORT,
@@ -22,4 +21,18 @@ module.exports = {
         client_secret: process.env.CLIENT_SECRET,
         callback_url: process.env.CALLBACK_URL,
     },
+    redis: {
+        redisUrl: process.env.REDIS_URL,
+    },
+    converter: {
+        outputDirectory: process.env.VIDEO_DIRECTORY,
+    },
+    projectRootDirectory: getRootDirectory(),
 };
+
+function getRootDirectory() {
+    if (!process.env.PWD) {
+        throw new Error('PWD environment variable not available');
+    }
+    return process.env.PWD;
+}

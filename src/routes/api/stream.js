@@ -7,7 +7,7 @@ const singleVideo = upload.uploadHandler({
     filename: 'video',
     type: 'single',
     ext: ['.mp4','.webm'],
-    fileSize: 50 * 1024 * 1024, // upto 50mb
+    fileSize: 500 * 1024 * 1024, // upto 50mb
 });
 
 router.route('/')

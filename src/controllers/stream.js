@@ -1,6 +1,8 @@
 const fs = require('fs');
-
+const pathLib = require('path');
 const Stream = require('../services/db/models/stream');
+const { videoQueue } = require('../services/jobs/convertVideo');
+const { projectRootDirectory } = require('../config');
 
 exports.getStreamInfoById = async (req, res, next) => {
     try {
@@ -75,6 +77,16 @@ exports.uploadStream = async (req, res, next) => {
         const stream = await Stream.create({
             metaInfo: videoDetails,
         });
+        const fullPath = pathLib.join(projectRootDirectory, stream.metaInfo.path);
+        const fileDirectory = pathLib.dirname(fullPath);
+        const jobOptions = {
+            fileDirectory,
+            fileName: stream.metaInfo.filename,
+            outputQualities: ['720', '480', '240'],
+            outPutDirectory: fileDirectory,
+        };
+        videoQueue.add(jobOptions);
+
         return res.json({ stream });
     } catch (e) {
         return next(e);
