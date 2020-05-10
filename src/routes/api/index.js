@@ -10,10 +10,10 @@ module.exports = {
             .forEach((file) => {
                 const route = file.split('.js')[0];
                 const urlPath = `${prefix}/${route}`;
-                routes.push({ path: urlPath });
+                routes.push(urlPath);
                 // eslint-disable-next-line global-require
                 return app.use(urlPath, require(path.join(__dirname, file)));
             });
-        console.log('paths: ', JSON.stringify(routes, null, 2));
+        console.log('resource paths: ', JSON.stringify(routes, null, 2));
     },
 };
