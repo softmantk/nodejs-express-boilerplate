@@ -1,5 +1,6 @@
 require('dotenv-flow')
     .config();
+
 module.exports = {
     server: {
         PORT: process.env.PORT,
@@ -22,9 +23,9 @@ module.exports = {
         callback_url: process.env.CALLBACK_URL,
     },
     redis: {
-        redisUrl: process.env.REDIS_URL,
+        // redisUrl: process.env.REDIS_URL,
         port: process.env.REDIS_PORT,
-        host: process.env.REDIS_HOST
+        host: process.env.REDIS_HOST,
     },
     converter: {
         outputDirectory: process.env.VIDEO_DIRECTORY,

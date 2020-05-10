@@ -7,18 +7,19 @@ const errorParser = require('./middlewares/error');
 
 const app = express();
 const API = require('./routes/api');
+const arena = require('./services/jobs/arena');
 
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-console.log("16::path.join(__dirname, 'stream_files', 'uploads')):",path.join(__dirname,'../', 'stream_files', 'uploads'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/watch', express.static(path.join(__dirname,'../', 'stream_files', 'uploads')));
-
+app.use('/arena', arena);
+app.use(logger('dev'));
+app.use('/watch', express.static(path.join(__dirname, '../', 'stream_files', 'uploads')));
 app.use('/', publicRouter);
 API.init(app);
+
 app.use((req, res) => res.status(404)
     .json({
         success: false,
@@ -29,18 +30,16 @@ app.use((req, res) => res.status(404)
         },
         message: 'Not Found.',
     }));
-app.use(errorParser, (err, req, res, next) => {
-    return res.status(500)
-        .json({
-            status: false,
-            message: {
-                body: req.body,
-                query: req.query,
-                url: req.url,
-                method: req.method,
-                err: err.message,
-                errObj: JSON.stringify(err, Object.getOwnPropertyNames(err)),
-            },
-        });
-});
+app.use(errorParser, (err, req, res, next) => res.status(500)
+    .json({
+        status: false,
+        message: {
+            body: req.body,
+            query: req.query,
+            url: req.url,
+            method: req.method,
+            err: err.message,
+            errObj: JSON.stringify(err, Object.getOwnPropertyNames(err)),
+        },
+    }));
 module.exports = app;

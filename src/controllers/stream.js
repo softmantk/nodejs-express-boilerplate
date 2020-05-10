@@ -4,6 +4,7 @@ const Stream = require('../services/db/models/stream');
 const { VODQueue } = require('../services/jobs/convertToVODHLS');
 const { projectRootDirectory } = require('../config');
 const util = require('../util');
+
 exports.getStreamInfoById = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -85,7 +86,10 @@ exports.uploadStream = async (req, res, next) => {
             fileName: stream.metaInfo.filename,
             outPutDirectory: pathLib.join(fileDirectory, fileNameOnly),
         };
-        await VODQueue.add(jobOptions);
+        await VODQueue.add(jobOptions, {
+            attempts: 5,
+            backoff: 5000,
+        });
         return res.json({
             stream,
             m3u8: `http://localhost:3000/watch/${fileNameOnly}/playlist.m3u8`,
