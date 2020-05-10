@@ -27,6 +27,12 @@ module.exports = {
         port: process.env.REDIS_PORT,
         host: process.env.REDIS_HOST,
     },
+    queue: {
+        arena: {
+            username: process.env.ARENA_USERNAME,
+            password: process.env.ARENA_PASSWORD,
+        },
+    },
     converter: {
         outputDirectory: process.env.VIDEO_DIRECTORY,
     },
