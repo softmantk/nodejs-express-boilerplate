@@ -14,7 +14,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv-flow": "^3.1.0",
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "express-basic-auth": "^1.2.0",
     "fluent-ffmpeg": "^2.1.2",
     "joigoose": "^7.0.0",
